@@ -1,2 +1,3 @@
 import vHeader from './vHeader/vHeader'
-export default {vHeader}
+import guide from './guide/guide'
+export default {vHeader, guide}

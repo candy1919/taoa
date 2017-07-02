@@ -4,14 +4,15 @@
 			<p slot="title">积分购</p>
 		</v-header>
 		<div class="banner">
-			<swipe class="my-swipe">
-		      <swipe-item class="slide" v-for="banner in banners.result" :key="banner.id">
-		        <img :src="banner.src">
-		      </swipe-item>
-		    </swipe>
+		    <swiper :options="swiperOption">
+		        <swiper-slide v-for="banner in banners.result" :key="banner.id" class="swiper-slide">
+		        	<img :src="banner.src">
+		        </swiper-slide>
+		        <div class="swiper-pagination" slot="pagination"></div>
+		    </swiper>
 		</div>
 		<ul class="sequence">
-			<li>默认</li>
+			<li>默认</li>                         
 			<li>销量</li>
 			<li>上新</li>
 			<li>价格<span class="up">▲</span><span class="down">▼</span></li>
@@ -33,12 +34,18 @@
 				</div>
 			</div>
 		</div>
+		<guide></guide>
 	</div>
 </template>
 <script>
 export default{
   data () {
     return {
+      swiperOption: {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay: 3000
+      },
       banners: {},
       shoplist: {},
       page: 1
@@ -65,18 +72,14 @@ export default{
 }
 </script>
 <style lang="less" scoped>
-	.my-swipe {
-      height: 200px;
-      color: #fff;
-      font-size: 30px;
-      text-align: center;
-    }
-    .slide {
-      img{
-      	width: 100%;
-      	height: 100%;
-      }
-    }
+	.swiper-slide{
+		width: 100%;
+		height: 200px;
+		img{
+			width: 100%;
+			height: 100%;
+		}
+	}
 	.sequence{
 		display: flex;
 		padding: 10px 0;

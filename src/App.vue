@@ -12,4 +12,5 @@ export default {
 
 <style>
 @import './assets/less/common.less';
+@import './assets/font/style.css';
 </style>

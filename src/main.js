@@ -6,15 +6,14 @@ import router from './router'
 import commonComponents from 'components'
 import VueResource from 'vue-resource'
 import Vuex from 'vuex'
-import { Swipe, SwipeItem } from 'vue-swipe'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 Vue.config.productionTip = false
 Object.keys(commonComponents).forEach(key => {
   Vue.component(key, commonComponents[key])
 })
-Vue.component('swipe', Swipe)
-Vue.component('swipeItem', SwipeItem)
 Vue.use(VueResource)
 Vue.use(Vuex)
+Vue.use(VueAwesomeSwiper)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
