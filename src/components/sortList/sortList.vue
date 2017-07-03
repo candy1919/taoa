@@ -4,7 +4,7 @@
 			<li @click="changeTpye(0)">默认</li> 
 			<li @click="changeTpye(1)">销量</li>
 			<li @click="changeTpye(2)">上新</li>
-			<li>价格<span class="up"  @click="changeTpye(3)">▲</span><span class="down"  @click="changeTpye(4)">▼</span></li>
+			<li @click="changeTpye(3)">价格<span class="up"  @click.stop="changeTpye(3)">▲</span><span class="down"  @click.stop="changeTpye(4)">▼</span></li>
 		</ul>
 	</div>
 </template>
@@ -12,6 +12,7 @@
 export default{
   methods: {
     changeTpye (type) {
+      this.$emit('sort', type)
     }
   }
 }

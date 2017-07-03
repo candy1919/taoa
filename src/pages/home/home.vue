@@ -11,7 +11,7 @@
 		        <div class="swiper-pagination" slot="pagination"></div>
 		    </swiper>
 		</div>
-		<sort-list></sort-list>
+		<sort-list @sort="listGoods"></sort-list>
 		<div class="list-container" v-if="retcode">
 			<div class="item" v-for="item in shoplist" :key="item.sid">
 				<router-link :to="{path:'goods',query:{sid:item.sid}}">
@@ -51,6 +51,7 @@ export default{
       retcode: false,
       banners: {},
       shoplist: [],
+      defaultlist: [],
       page: 0,
       scroll: true,
       totalPage: 0,
@@ -74,6 +75,7 @@ export default{
         this.page++
         if (this.page === 1) {
           this.shoplist = response.body.data.rows
+          this.defaultlist = this.shoplist
           this.totalPage = response.body.data.total
         } else {
           this.shoplist = this.shoplist.concat(response.body.data.rows)
@@ -99,6 +101,18 @@ export default{
             this.end = true
           }
         }
+      }
+    },
+    listGoods (type) {
+      let arr = ['default', 'sell', 'time', 'price', 'price']
+      if (type !== 0) {
+        if (type !== 4) {
+          this.shoplist.sort((a, b) => { return a[arr[type]] - b[arr[type]] })
+        } else {
+          this.shoplist.sort((a, b) => { return b[arr[type]] - a[arr[type]] })
+        }
+      } else {
+        this.shoplist = this.defaultlist
       }
     }
   }

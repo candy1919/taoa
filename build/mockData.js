@@ -31,6 +31,9 @@ app.get('/home/shoplist', function (req, res) {
 	            'rows|10': [{
 	                'id|+1': 1,
 	                'sid|+1': 1,
+	                'price': '@natural(1, 500)',
+	                'sell': '@natural(0,500)',
+	                'time': Random.date('T'),
 	                'remainmember': '@natural(100, 1000)',
 	                'joinedmember': '@natural(100, 1000)',
 	                'totalmember': '@natural(100, 1000)',
