@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div  class="home">
 		<v-header>
 			<p slot="title">积分购</p>
 		</v-header>
@@ -11,33 +11,35 @@
 		        <div class="swiper-pagination" slot="pagination"></div>
 		    </swiper>
 		</div>
-		<ul class="sequence">
-			<li>默认</li>                         
-			<li>销量</li>
-			<li>上新</li>
-			<li>价格<span class="up">▲</span><span class="down">▼</span></li>
-		</ul>
-		<div class="list-container" v-if="shoplist.retcode">
-			<div class="item" v-for="item in shoplist.data.rows" :key="item.sid">
-				<!-- <a href=""> -->
+		<sort-list></sort-list>
+		<div class="list-container" v-if="retcode">
+			<div class="item" v-for="item in shoplist" :key="item.sid">
+				<router-link :to="{path:'goods',query:{sid:item.sid}}">
 					<div class="img-wrap">
 						<img :src="item.cover">
 					</div>
 					<p class="title">{{item.title}}</p>
-				<!-- </a> -->
+				</router-link>
 				<div class="msg">
 					<div class="state">
 						<p class="hit">开奖进度{{calPercent (item.joinedmember,item.totalmember)}}%</p>
-						<p class="progress"><span :style=""></span></p>
+						<p class="progress"><span :style="'width:'+calPercent (item.joinedmember,item.totalmember)+'%'"></span></p>
 					</div>
 					<button class="red-btn">+清单</button>
 				</div>
 			</div>
+			<div v-if="end">
+				已经到最后
+			</div>
+		</div>
+		<div v-else>
+          网络出现问题稍后加载		
 		</div>
 		<guide></guide>
 	</div>
 </template>
 <script>
+import sortList from '@/components/sortList/sortList'
 export default{
   data () {
     return {
@@ -46,10 +48,17 @@ export default{
         paginationClickable: true,
         autoplay: 3000
       },
+      retcode: false,
       banners: {},
-      shoplist: {},
-      page: 1
+      shoplist: [],
+      page: 0,
+      scroll: true,
+      totalPage: 0,
+      end: false
     }
+  },
+  components: {
+    sortList
   },
   created () {
     this.$http.get('/home/banner').then(response => {
@@ -57,21 +66,48 @@ export default{
     }, response => {
     })
     this.getShopList()
+    window.addEventListener('scroll', this.getScrollData)
   },
   methods: {
     getShopList () {
-      this.$http.get('/home/shoplist', {params: {'page': 1}}).then(response => {
-        this.shoplist = response.body
+      this.$http.get('/home/shoplist', {params: {'page': this.page + 1}}).then(response => {
+        this.page++
+        if (this.page === 1) {
+          this.shoplist = response.body.data.rows
+          this.totalPage = response.body.data.total
+        } else {
+          this.shoplist = this.shoplist.concat(response.body.data.rows)
+        }
+        this.scroll = true
+        this.retcode = true
       }, response => {
+        this.retcode = false
       })
     },
     calPercent (join, total) {
       return ((join / total) * 100).toFixed(0)
+    },
+    // 滚动加载
+    getScrollData () {
+      let totalHeight = window.innerHeight + window.scrollY
+      if (this.scroll) {
+        if (document.body.clientHeight <= totalHeight + 200) {
+          this.scroll = false
+          if (this.page < this.totalPage) {
+            this.getShopList()
+          } else {
+            this.end = true
+          }
+        }
+      }
     }
   }
 }
 </script>
 <style lang="less" scoped>
+	// ::-webkit-scrollbar{
+	// 	display: none;
+	// }
 	.swiper-slide{
 		width: 100%;
 		height: 200px;
@@ -80,16 +116,8 @@ export default{
 			height: 100%;
 		}
 	}
-	.sequence{
-		display: flex;
-		padding: 10px 0;
-		text-align: center;
-		border-bottom: 1px solid #000;
-		li{
-			flex:1;
-		}
-	}
 	.list-container{
+		padding-bottom: 60px;
 		.item{
 			display: inline-block;
 			padding: 10px 10px 15px 10px;

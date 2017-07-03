@@ -20,12 +20,18 @@
 </template>
 <script>
 	export default{
-
 	}
 </script>
 <style lang="less" scoped>
 	.guide{
 		display: flex;
+		position: fixed;
+		padding-top: 5px;
+		bottom: 0;
+		left:0;
+		right: 0;
+		height: 60px;
+		background-color: white;
 		.item{
 			flex:1;
 			text-align: center;
@@ -36,7 +42,6 @@
 			&.active{
 				color:red;
 			}
-
 		}
 	}
 </style>
