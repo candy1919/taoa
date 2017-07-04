@@ -4,6 +4,7 @@ Vue.use(Router)
 
 const home = resolve => require(['@/pages/home/home'], resolve)
 const goods = resolve => require(['@/pages/goods/goods'], resolve)
+const grapic = resolve => require(['@/pages/goods/grapic'], resolve)
 export default new Router({
   routes: [
     {
@@ -12,7 +13,13 @@ export default new Router({
     },
     {
       path: '/goods',
-      component: goods
+      component: goods,
+      children: [
+        {
+          path: 'grapic',
+          component: grapic
+        }
+      ]
     }
   ]
 })

@@ -49,4 +49,40 @@ app.get('/home/shoplist', function (req, res) {
 	    })
 	    res.send( JSON.stringify(data, null, 4) );
 });
+// 生成商品列数据
+app.get('/goods/detail', function (req, res) {
+	var Random = Mock.Random,
+        data=Mock.mock({
+		      "retcode": 1,
+		      "retmsg": "查询成功",
+		      "data": {
+		          'id|+1': 1,
+	              'sid|+1': 1,
+		          "step": 1,
+		          "periods|+1": 100000001,
+		          "title": "@title(6, 15)",
+		          "totalmember": "@natural(100, 1000)",
+		          "joinedmember": "@natural(100, 1000)",
+		          "remainmember": "@natural(100, 1000)",
+		          "downtime": "@natural(1, 100)",
+		          "publishtime": Random.date('T'),
+		          "perprice": "@natural(1, 100)",
+		          "isshow": "@natural(0, 2)",
+		          "caipiaotype": "100",
+		          "wuser": "{ \"buycount\": 119,\"bingocode\": \"10000069\", \"nickname\": \"抽奖小王子\",\"mid\": 100000, \"areaip\": \"局域网,10.1.1.51\", \"portrait\":\"/upload/igame/images/portrait/2016-03-23/8c714e38-e5a9-4117-81e1-4e3a162727f2.jpg\" }",
+		          "buyInfo": {
+		              "oid": 2,
+		              "buycount": 2,
+		              "buycodes": "10000021, 10000024"
+		          },
+		          "images": [
+		              "http://dummyimage.com/640x400/339966/333&text=Banner1",
+		              "http://dummyimage.com/640x400/337ab7/333&text=Baner2",
+		              "http://dummyimage.com/640x400/ffcc33/333&text=Banner3"
+		          ],
+		          "content": "<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc259892e35.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc2598ac0d4.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc2598a3d73.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc2598b07d3.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc2598af7ab.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc2598ad690.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc2598c7a1a.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc25b18582d.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc259904e93.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc25993e6b3.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc25994a2b1.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc25995eb24.jpg\"><\/p>"
+		      }
+        })
+	res.send( JSON.stringify(data, null, 4) );
+});
 module.exports = app;

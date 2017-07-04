@@ -1,3 +1,5 @@
 import vHeader from './vHeader/vHeader'
 import guide from './guide/guide'
-export default {vHeader, guide}
+import cart from './cart/cart'
+import split from './split/split'
+export default {vHeader, guide, cart, split}

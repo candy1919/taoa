@@ -19,6 +19,9 @@
 						<img :src="item.cover">
 					</div>
 					<p class="title">{{item.title}}</p>
+					{{item.price}}
+					{{item.sell}}
+					{{item.time}}
 				</router-link>
 				<div class="msg">
 					<div class="state">
@@ -75,10 +78,11 @@ export default{
         this.page++
         if (this.page === 1) {
           this.shoplist = response.body.data.rows
-          this.defaultlist = this.shoplist
+          this.defaultlist = [].concat(this.shoplist)
           this.totalPage = response.body.data.total
         } else {
           this.shoplist = this.shoplist.concat(response.body.data.rows)
+          this.defaultlist = this.defaultlist.concat(response.body.data.rows)
         }
         this.scroll = true
         this.retcode = true
@@ -112,7 +116,7 @@ export default{
           this.shoplist.sort((a, b) => { return b[arr[type]] - a[arr[type]] })
         }
       } else {
-        this.shoplist = this.defaultlist
+        this.shoplist = [].concat(this.defaultlist)
       }
     }
   }
