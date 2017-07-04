@@ -60,7 +60,7 @@
 			<div class="inf-item center">
 				<router-link :to="{path:'login'}" class="login">登录</router-link>查看记录
 			</div>
-			<div class="inf-item">
+			<div class="inf-item" v-if="goodsInf.buyInfo">
 				<p>你参与了：{{goodsInf.buyInfo.buycount}}人次</p>
 				<p>夺宝号码:{{goodsInf.buyInfo.buycodes}}</p>
 			</div>
@@ -69,11 +69,11 @@
 		<div class="list-item">
 			<p>
 				<span>图文详情</span>
-				<router-link :to="{path:'grapic'}">WiFi</router-link>
+				<router-link :to="{path:'/goods/grapic'}">WiFi</router-link>
 			</p>
 			<p>
 				<span>图文</span>
-				<router-link>WiFi</router-link>
+				<router-link :to="{path:'/goods/grapic'}">WiFi</router-link>
 			</p>
 		</div>
 		<div class="list-item">
