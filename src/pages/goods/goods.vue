@@ -1,7 +1,8 @@
 <template>
-	<div class="goods">
+	<div>
+		<div class="goods" ref="goods">
 		<v-header>
-			<p slot="left">》</p>
+			<p slot="left">></p>
 			<p slot="title">商品详情</p>
 			<p slot="right">分享</p>
 		</v-header>
@@ -66,32 +67,41 @@
 			</div>
 		</div>
 		<split></split>
-		<div class="list-item">
+		<div class="list-item grah">
 			<p>
 				<span>图文详情</span>
-				<router-link :to="{path:'/goods/grapic'}">WiFi</router-link>
+				<router-link :to="{path:'/goods/grapic'}">
+				建议在WiFi下查看></router-link>
 			</p>
 			<p>
-				<span>图文</span>
-				<router-link :to="{path:'/goods/grapic'}">WiFi</router-link>
+				<span>往期揭晓</span>
+				<router-link :to="{path:'/goods/past'}">></router-link>
 			</p>
 		</div>
+		<split></split>
 		<div class="list-item">
-			<p>记录</p>
-			<div>
-				<div>
-					<img src="">
+			<p class="title">所有参与记录</p>
+			<div class="record-container">
+				<div class="record">
+					<div class="avtar-wrap">
+						<img src="">
+					</div>
+					<div class="record-inf">
+						<p class="name">mingzi</p>
+						<p class="msg">
+							<span>ip</span>
+							<span>1ci</span>
+						</p>
+					</div>
 				</div>
-				<div>
-					<p>mingzi</p>
-					<p>
-						<span>ip</span>
-						<span>1ci</span>
-					</p>
-				</div>
+				
 			</div>
 		</div>
 		<cart></cart>
+		</div>
+		<transition name="router-slid" v-on:before-enter="beforeEnter" v-on:leave="leave">
+            <router-view></router-view>
+        </transition>
 	</div>	
 </template>
 <script>
@@ -115,11 +125,25 @@ export default{
   methods: {
     calPercent (join, total) {
       return ((join / total) * 100).toFixed(0)
+    },
+    beforeEnter () {
+      this.$refs.goods.style.display = 'none'
+      console.log('1111')
+    },
+    leave () {
+      this.$refs.goods.style.display = 'block'
     }
   }
 }
 </script>
 <style lang="less" scoped>
+	.router-slid-enter-active, .router-slid-leave-active {
+        transition: all .4s;
+    }
+    .router-slid-enter, .router-slid-leave-active {
+        transform: translate3d(2rem, 0, 0);
+        opacity: 0;
+    }
 	.swiper-slide{
 		width: 100%;
 		height: 200px;
@@ -129,6 +153,11 @@ export default{
 		}
 	}
 	.goods{
+		position: absolute;
+	    left: 0;
+	    right: 0;
+	    top:0;
+	    height: 100%;
 		.inf{
 			padding: 10px;
 			background-color: white;
@@ -184,10 +213,64 @@ export default{
 			padding: 10px;
 			p{
 				padding: 5px;
+				overflow: hidden;
+				span{
+					float: left;
+				}
+				a{
+					float: right;
+				}
 			}
-			p:nth-of-type(1){
-				border-bottom: 1px solid #ddd;
-			}
+			&.grah{
+				p:nth-of-type(1){
+					border-bottom: 1px solid #ddd;
+				}
+		    }
+		    .title{
+		    	padding: 10px 0;
+		    	font-size: 16px;
+		    }
+		    .record-container{
+		    	padding: 0 10px;
+		    	background-color: #ddd;
+		    	.record{
+		    		display: flex;
+		    		position: relative;
+		    		padding: 10px 0;
+		    		&:after{
+		    			position: absolute;
+		    			top:0;
+		    			left:20px;
+		    			height: 100%;
+		    			content: "";
+		    			border-right: 1px solid #ddd;
+		    		}
+		    		.avtar-wrap{
+		    			margin-right: 10px;
+		    			border-radius: 50%;
+		    			img{
+		    				width: 40px;
+		    				height: 40px;
+		    				vertical-align: bottom;
+		    			}
+		    		}
+		    		.record-inf{
+		    			flex:1;
+		    			p{
+		    				padding: 0;
+		    			}
+		    			.msg{
+		    				overflow: hidden;
+		    				span:nth-of-type(1){
+		    					float: left;
+		    				}
+		    				span:nth-of-type(2){
+		    					float: right;
+		    				}
+		    			}
+		    		}
+		    	}
+		    }
 		}
 	}
 </style>
