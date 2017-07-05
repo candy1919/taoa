@@ -32,14 +32,14 @@
 				</p>
 			</div>
 			<!-- 倒计时 -->
-			<div v-if="goodsInf.isshow==1">
+			<div class="showType" v-if="goodsInf.isshow==1">
 				<p>期号:{{goodsInf.periods}}</p>
 				<p class="timer">
                    <span>揭晓倒计时：05:52:13</span>
                 </p>
 			</div>
 			<!-- 已揭晓 -->
-			<div v-if="goodsInf.isshow==2">
+			<div class="showType" v-if="goodsInf.isshow==2">
                <!-- <div class="centent">
                  <div class="Rimg"><img :src="list.wuser.portrait"></div>
                  <div class="Rtxt">
@@ -82,19 +82,18 @@
 		<div class="list-item">
 			<p class="title">所有参与记录</p>
 			<div class="record-container">
-				<div class="record">
+				<div class="record" v-for="user in goodsInf.buyuser">
 					<div class="avtar-wrap">
-						<img src="">
+						<img :src="user.src">
 					</div>
 					<div class="record-inf">
-						<p class="name">mingzi</p>
+						<p class="name">{{user.name}}</p>
 						<p class="msg">
-							<span>ip</span>
-							<span>1ci</span>
+							<span>{{user.ip}}</span>
+							<span>参与{{user.times}}人次</span>
 						</p>
 					</div>
 				</div>
-				
 			</div>
 		</div>
 		<cart></cart>
@@ -153,11 +152,7 @@ export default{
 		}
 	}
 	.goods{
-		position: absolute;
-	    left: 0;
-	    right: 0;
-	    top:0;
-	    height: 100%;
+		padding-bottom: 41px;
 		.inf{
 			padding: 10px;
 			background-color: white;
@@ -237,21 +232,23 @@ export default{
 		    		display: flex;
 		    		position: relative;
 		    		padding: 10px 0;
-		    		&:after{
+		    		&:before{
 		    			position: absolute;
 		    			top:0;
 		    			left:20px;
 		    			height: 100%;
 		    			content: "";
-		    			border-right: 1px solid #ddd;
+		    			border-right: 1px solid #5a5a5a;
+		    			z-index: 0;
 		    		}
 		    		.avtar-wrap{
 		    			margin-right: 10px;
-		    			border-radius: 50%;
+		    			z-index: 2;
 		    			img{
 		    				width: 40px;
 		    				height: 40px;
 		    				vertical-align: bottom;
+		    				border-radius: 50%;
 		    			}
 		    		}
 		    		.record-inf{

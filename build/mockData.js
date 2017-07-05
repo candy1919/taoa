@@ -75,6 +75,17 @@ app.get('/goods/detail', function (req, res) {
 		              "buycount": 2,
 		              "buycodes": "10000021, 10000024"
 		          },
+		          "buyuser|5":[{
+		              "name":Random.cname(),
+		              "ip":Random.ip(),
+		              "times":"@natural(1, 5)",
+		              'src|1': ['http://scimg.jb51.net/allimg/150819/14-150QZ9194K27.jpg',
+                        'http://pic15.photophoto.cn/20100615/0006019058815826_b.jpg',
+                        'http://img15.3lian.com/2016/h1/124/171.jpg',
+                        'http://pic15.photophoto.cn/20100615/0006019058815826_b.jpg',
+                        'http://pic16.photophoto.cn/20100727/0006019030380410_b.jpg'
+                       ]
+		          }],
 		          "images": [
 		              "http://dummyimage.com/640x400/339966/333&text=Banner1",
 		              "http://dummyimage.com/640x400/337ab7/333&text=Baner2",

@@ -25,6 +25,7 @@
 		left: 0;
 		right: 0;
 		background-color: white;
+		z-index: 10;
 		.add,.pay{
 			flex:1;
 			margin: 10px;
@@ -34,17 +35,19 @@
 			border-radius: 3px;
 		}
 		.pay{
-			color:red;
-			border:1px solid red;
+			color:white;
+			background-color: #f66;
+			border:1px solid #f66;
 		}
 		.add{
-			color:black;
-			border:1px solid black;
+			color:#5a5a5a;
+			border:1px solid #5a5a5a;
 		}
 		.cart-wrap{
 			margin: 10px;
 			i{
 				font-size: 30px;
+				vertical-align: middle;
 			}
 		} 
 	}
