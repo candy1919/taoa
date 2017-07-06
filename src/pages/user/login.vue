@@ -47,8 +47,7 @@ export default{
             this.flag = true
             this.msg = '账号或密码错误'
           } else {
-          	// 保存登录数据
-          	
+              // 保存登录数据
           }
         }, response => {
         })
