@@ -96,4 +96,16 @@ app.get('/goods/detail', function (req, res) {
         })
 	res.send( JSON.stringify(data, null, 4) );
 });
+//登录
+app.post('/user/login', function (req, res) {
+	let data = {
+		res:''
+	}
+	if(res.name == 'admin'&&res.password == '123456'){
+		data.res = true;
+	} else{
+		data.res =false
+	}
+    res.send( JSON.stringify(data, null, 4) );
+});
 module.exports = app;

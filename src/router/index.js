@@ -5,8 +5,9 @@ Vue.use(Router)
 const home = resolve => require(['@/pages/home/home'], resolve)
 const goods = resolve => require(['@/pages/goods/goods'], resolve)
 const grapic = resolve => require(['@/pages/goods/grapic'], resolve)
-const login = resolve => require(['@/pages/login/login'], resolve)
+const login = resolve => require(['@/pages/user/login'], resolve)
 const user = resolve => require(['@/pages/user/user'], resolve)
+const pay = resolve => require(['@/pages/pay/pay'], resolve)
 var router = new Router({
   routes: [
     {
@@ -24,12 +25,19 @@ var router = new Router({
       ]
     },
     {
-      path: '/login',
-      component: login
-    },
-    {
       path: '/user',
       component: user,
+      meta: { requiresAuth: true },
+      children: [
+        {
+          path: 'login',
+          component: login
+        }
+      ]
+    },
+    {
+      path: '/pay',
+      component: pay,
       meta: { requiresAuth: true }
     }
   ]
@@ -38,11 +46,10 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    let flag = true
-    if (flag) {
+    if (to.path !== '/user/login') {
       next({
-        path: '/login'
-        // query: { redirect: to.fullPath }
+        path: '/user/login',
+        query: { redirect: to.fullPath }
       })
     } else {
       next()

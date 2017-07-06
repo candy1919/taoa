@@ -5,7 +5,7 @@
 				<router-link :to="{path:'/pay'}">立即夺宝</router-link>
 			</div>
 			<div class="add">
-				<router-link :to="{path:'/pay'}">加入清单</router-link>
+				<router-link :to="{path:'/add'}">加入清单</router-link>
 			</div>
 			<div class="cart-wrap">
 				<router-link :to="{path:'/pay'}"><i class="icon-cart"></i></router-link>

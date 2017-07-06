@@ -1,6 +1,6 @@
 <template>
 	<div>
-		登录
+		pay
 	</div>
 </template>
 <script>

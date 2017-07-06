@@ -59,7 +59,7 @@
                </div>
             </div>
 			<div class="inf-item center">
-				<router-link :to="{path:'login'}" class="login">登录</router-link>查看记录
+				<router-link :to="{path:'/user/login'}" class="login">登录</router-link>查看记录
 			</div>
 			<div class="inf-item" v-if="goodsInf.buyInfo">
 				<p>你参与了：{{goodsInf.buyInfo.buycount}}人次</p>
