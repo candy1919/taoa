@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import {getStore} from '@/util/util'
 Vue.use(Router)
 
 const home = resolve => require(['@/pages/home/home'], resolve)
@@ -43,7 +44,7 @@ var router = new Router({
   ]
 })
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
+  if (to.matched.some(record => record.meta.requiresAuth) && !getStore('user_id')) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
     if (to.path !== '/user/login') {

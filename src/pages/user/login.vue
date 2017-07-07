@@ -9,7 +9,7 @@
 				<div class="input-wrap">
 					<label>账号：</label>
 					<p>
-						<input type="text" placeholder="请输入账号\手机号" required v-model="name">
+						<input type="text" placeholder="请输入账号\手机号" required v-model="user_id">
 					</p>
 				</div>
 				<div class="input-wrap">
@@ -29,25 +29,42 @@
 	</div>
 </template>
 <script>
+import {mapMutations} from 'vuex'
 export default{
   data () {
     return {
-      name: '',
+      user_id: '',
       password: '',
       msg: 'aaa',
       flag: false
     }
   },
   methods: {
+    ...mapMutations([
+      'RECORD_USERINFO'
+    ]),
     login () {
-      if (this.name && this.password) {
-        this.$http.post('/user/login', {params: {'name': this.name, 'password': this.password}}).then(response => {
+      if (this.user_id && this.password) {
+        this.$http({
+          url: '/user/login',
+          method: 'POST',
+          body: JSON.stringify({
+            user_id: this.user_id,
+            password: this.password
+          }),
+          headers: {
+            contentType: 'application/x-www-form-urlencoded'
+          }
+        }).then(response => {
           let res = response.body.res
+          console.log(res)
           if (!res) {
             this.flag = true
             this.msg = '账号或密码错误'
           } else {
               // 保存登录数据
+            this.RECORD_USERINFO({user_id: this.user_id})
+            // this.$router.go(-1)
           }
         }, response => {
         })

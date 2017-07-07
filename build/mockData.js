@@ -1,6 +1,9 @@
 var express = require('express'),
 	app     = express(),
 	Mock    = require('mockjs');
+var bodyParser = require('body-parser')
+var jsonParser = bodyParser.json()
+app.use(bodyParser.json());
 /* 学校 */
 app.get('/home/banner', function (req, res) {
 	var Random = Mock.Random,
@@ -101,7 +104,7 @@ app.post('/user/login', function (req, res) {
 	let data = {
 		res:''
 	}
-	if(res.name == 'admin'&&res.password == '123456'){
+	if(req.body.user_id == 'admin'&&req.body.password == '123456'){
 		data.res = true;
 	} else{
 		data.res =false

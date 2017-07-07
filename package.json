@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "body-parser": "^1.17.2",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
     "mockjs": "^1.0.1-beta3",
