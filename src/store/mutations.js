@@ -1,10 +1,17 @@
-import { RECORD_USERINFO, OUT_LOGIN } from './mutation-types'
-import {setStore, getStore} from '../util/util'
+import { RECORD_USERINFO, OUT_LOGIN, GET_USERINFO } from './mutations-types'
+import {setStore, getStore, delStore} from '../util/util'
 
 export default{
-  [RECORD_USERINFO](state, info){
+  [RECORD_USERINFO] (state, info) {
     state.userInfo = info
     state.login = true
     setStore('user_id', info.user_id)
+  },
+  [OUT_LOGIN] (state) {
+    state.login = false
+    delStore('user_id')
+  },
+  [GET_USERINFO] (state) {
+    state.userInfo = getStore('user_id')
   }
 }

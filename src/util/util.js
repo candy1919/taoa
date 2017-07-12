@@ -11,3 +11,7 @@ export const getStore = (name) => {
   console.log(data)
   return data
 }
+export const delStore = (name) => {
+  if (!name) return
+  window.localStorage.removeItem(name)
+}
