@@ -1,5 +1,5 @@
 <template>
-	<div  class="home">
+	<div class="home" ref="home">
 		<v-header>
 			<p slot="title">积分购</p>
 		</v-header>
@@ -70,7 +70,10 @@ export default{
     }, response => {
     })
     this.getShopList()
-    window.addEventListener('scroll', this.getScrollData)
+    // window.addEventListener('scroll', this.getScrollData)
+  },
+  mounted () {
+    this.$refs.home.addEventListener('scroll', this.getScrollData)
   },
   methods: {
     getShopList () {
@@ -133,6 +136,10 @@ export default{
 			width: 100%;
 			height: 100%;
 		}
+	}
+	.home{
+		height: 100%;
+		overflow: auto;
 	}
 	.list-container{
 		padding-bottom: 60px;

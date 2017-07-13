@@ -23,8 +23,12 @@
 		text-align: center;
 		color: #fff;
 		background-color: #f66;
+		.left{
+			display: inline-block;
+		}
 		.left,.right{
 			width: 60px;
+			align-items:center;
 		}
 		.middle{
 			flex:1;
