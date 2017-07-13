@@ -3,9 +3,9 @@
 		<div @click="toggle">
 			<slot name="title"></slot>
 		</div>
-		<div v-if="isShow">
+		<transition v-if="isShow" name="fade">
 			<slot name="content"></slot>
-		</div>
+		</transition>
 	</div>
 </template>
 <script>
@@ -45,7 +45,10 @@ export default{
 }
 </script>
 <style lang="less" scoped>
-	.panel{
-
-	}
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+  .fade-enter, .fade-leave-to  {
+    opacity: 0
+  }
 </style>

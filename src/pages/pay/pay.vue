@@ -10,7 +10,20 @@
 					<span>奖品合计</span>
 					<span class="icon-arrow-up">566积分</span>
 				</div>
-				<div class="panel" slot="content">
+				<div class="order-detail" slot="content">
+					<p class="hit">注：请确认如下订单明细</p>
+					<p class="order-item">
+						<span>注：请确认如下订单明细注：请确认如下订单明细请确认如下订单明细请确认如下订单明细</span>
+						<span>1234积分</span>
+					</p>
+					<p class="order-item">
+						<span>注：请确认如下订单明细请确认如下订单明细请确认如下订单明细</span>
+						<span>1234积分</span>
+					</p>
+				</div>
+			</panel>
+			<panel class="panel-group" type="fold" :show="false">
+				<div class="panel" slot="title">
 					<span>奖品合计</span>
 					<span>566积分</span>
 				</div>
@@ -48,11 +61,11 @@ export default{
 			}
 		}
 		.panel-group{
-			background-color: white;
 			.panel{
 				display: flex;
 				position: relative;
 				padding: 15px 10px;
+				background-color: white;
 				span:nth-of-type(1){
 					flex:1;
 					color: #333;
@@ -72,6 +85,30 @@ export default{
 					height: 1px;
 					background-color: #d9d9d9;
 					transform:scaleY(.5)
+				}
+			}
+			.order-detail{
+				margin: 15px;
+				padding: 15px;
+				background-color: white;
+				.hit{
+					padding-bottom: 5px;
+					font-size: 14px;
+					color: #f69f16;
+				}
+				.order-item{
+					display: flex;
+					font-size: 12px;
+					span:nth-of-type(1){
+						flex:1;
+						text-overflow:ellipsis;
+						white-space: nowrap;
+						overflow: hidden;
+						text-indent: 1em;
+					}
+					span:nth-of-type(2){
+						margin-left: 10px;
+					}
 				}
 			}
 		}
