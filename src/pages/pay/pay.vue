@@ -5,7 +5,7 @@
 				<p slot="left" class="icon-arrow-back"></p>
 				<p slot="title">支付订单</p>
 			</v-header>
-			<panel class="panel-group" type="fold" :show="true">
+			<panel class="panel-group" type="fold" :show="true" >
 				<div class="panel" slot="title">
 					<span>奖品合计</span>
 					<span class="icon-arrow-up">566积分</span>
@@ -22,12 +22,13 @@
 					</p>
 				</div>
 			</panel>
-			<panel class="panel-group" type="fold" :show="false">
+			<!-- <panel type="fold"></panel> -->
+			<!-- <panel class="panel-group" type="fold" :show="false">
 				<div class="panel" slot="title">
 					<span>奖品合计</span>
 					<span>566积分</span>
 				</div>
-			</panel>
+			</panel> -->
 			<split></split>
 			<div class="panel-group">
 				<div class="panel">
