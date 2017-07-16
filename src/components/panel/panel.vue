@@ -4,20 +4,10 @@
 			<slot name="title"></slot>
 		</div>
   		<transition name="fade">
-        <div v-show="isShow" class="content-wrap">
-  			 <slot name="content"></slot>
-        </div>
+        <div ref="content" v-show="isShow" class="content-wrap">
+  			   <slot name="content"></slot>
+         </div>
   		</transition>
-      <!-- <div>
-        <button type="button" @click='fns'>点击</button>
-        <transition name="fade">
-          <div class='background' v-show='isShow'>
-            <p class="p">
-              this is a p
-            </p>
-          </div>
-        </transition>
-      </div> -->
 	</div>
 </template>
 <script>
@@ -34,16 +24,14 @@ export default{
   },
   data () {
     return {
-      isShow: false
+      isShow: '',
+      height: ''
     }
   },
   mounted () {
-    // this.init()
+    this.init()
   },
   methods: {
-    fns () {
-      this.isShow = !this.isShow
-    },
     toggle () {
       if (this.type === 'fold') {
         this.isShow = !this.isShow
@@ -53,7 +41,8 @@ export default{
       if (this.type === 'normal') {
         this.isShow = true
       } else {
-        this.isShow = this.show
+        // this.isShow = this.show
+       // this.$refs.
       }
     }
   }
@@ -61,24 +50,14 @@ export default{
 </script>
 <style lang="less" scoped>
 .content-wrap {
-  //background: #000;
-  //width: 100px;
-  transform: scaleY(1);
-  transform-origin: top;
-}
-
-.p {
-  padding: 30px;
-  line-height: 30px;
+  overflow: hidden;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: transform 0.3s ease;
+  transition: height 0.5s ease; //动画过渡
 }
-
-.fade-enter,
-.fade-leave-to {
-  transform: scaleY(0);
+.fade-enter,.fade-leave-to {
+  height: 0
 }
 </style>
