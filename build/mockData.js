@@ -111,4 +111,11 @@ app.post('/user/login', function (req, res) {
 	}
     res.send( JSON.stringify(data, null, 4) );
 });
+app.post('/pay', function (req, res) {
+	let data = {
+		"retcode": 1,
+		"retmsg": "查询成功"
+	}
+    res.send( JSON.stringify(data, null, 4) );
+});
 module.exports = app;

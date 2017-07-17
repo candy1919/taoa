@@ -43,6 +43,7 @@ var router = new Router({
     }
   ]
 })
+import store from '../store'
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth) && !getStore('user_id')) {
     // this route requires auth, check if logged in
@@ -56,6 +57,9 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else {
+    if (!store.state.userInfo) {
+      store.commit('GET_USERINFO')
+    }
     next() // 确保一定要调用 next()
   }
 })

@@ -4,9 +4,9 @@
 			<slot name="title"></slot>
 		</div>
   		<transition name="fade">
-        <div ref="content" v-show="isShow" class="content-wrap">
-  			   <slot name="content"></slot>
-         </div>
+        <div v-show="isShow" class="content-wrap" ref="content">
+  			 <slot name="content"></slot>
+        </div>
   		</transition>
 	</div>
 </template>
@@ -24,11 +24,14 @@ export default{
   },
   data () {
     return {
-      isShow: '',
-      height: ''
+      isShow: true,
+      endHeight: ''
     }
   },
   mounted () {
+    let box = this.$refs.content
+    this.endHeight = getComputedStyle(box).height
+    console.log(this.endHeight)
     this.init()
   },
   methods: {
@@ -41,8 +44,9 @@ export default{
       if (this.type === 'normal') {
         this.isShow = true
       } else {
-        // this.isShow = this.show
-       // this.$refs.
+        this.isShow = this.show
+        let box = this.$refs.content
+        box.style.height = '200px'
       }
     }
   }
@@ -53,11 +57,18 @@ export default{
   overflow: hidden;
 }
 
+.p {
+  padding: 30px;
+  line-height: 30px;
+}
+
 .fade-enter-active,
 .fade-leave-active {
-  transition: height 0.5s ease; //动画过渡
+  transition: height 0.3s ease;
 }
-.fade-enter,.fade-leave-to {
+
+.fade-enter,
+.fade-leave-to {
   height: 0
 }
 </style>

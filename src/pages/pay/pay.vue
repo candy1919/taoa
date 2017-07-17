@@ -36,16 +36,34 @@
 					<span class="icon-arrow-up">566积分</span>
 				</div>
 			</div>
-			<p class="submit">确认支付</p>
+			<p class="submit" @click="submit">确认支付</p>
 		</form>
 		<guide></guide>
 	</div>
 </template>
 <script>
 import panel from '../../components/panel/panel'
+import { mapState } from 'vuex'
+import { getStore } from '../../util/util'
 export default{
   components: {
     panel
+  },
+  computed: mapState([
+    'userInfo'
+  ]),
+  methods: {
+    submit () {
+      this.axios.post(this.baseUrl + '/pay', {
+        userId: getStore('user_id'),
+        goodId: '123455',
+        price: 100
+      }).then(function (response) {
+        console.log(response)
+      }).catch(function (error) {
+        console.log(error)
+      })
+    }
   }
 }
 </script>
