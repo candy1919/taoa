@@ -23,3 +23,51 @@ a:hover,a:visited{
 input{
 	outline: none;
 }
+input::placeholder {
+  color: #d2dad7;
+}
+.input-container{
+	margin:20px 0;
+	padding: 0 15px;
+	font-size: 17px;
+	color: #333;
+	background-color: #fff;
+	.input-item{
+		padding: 10px 0;
+		display: flex;
+		border-bottom: 1px solid #ddd;
+		&:last-child{
+			border-bottom: none;
+		}
+		label{
+			width: 5em;
+		}
+		.input-wrap{
+			flex:1;
+			input{
+				width: 100%;
+			}
+		}
+	}
+}
+.form{
+	.btns-group{
+		padding:0 15px;
+	}
+	.btn{
+		display: block;
+		margin-bottom: 15px;
+		padding: 10px 0;
+		text-align: center;
+		border-radius: 3px;
+		border:1px solid #f66;
+		&.btn-submit{
+			color:white;
+			background-color: #f66;
+		}
+		&.btn-default{
+			color: #f66;
+			//background-color: 
+		}
+	}
+}

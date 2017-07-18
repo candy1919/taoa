@@ -8,6 +8,7 @@ const goods = resolve => require(['@/pages/goods/goods'], resolve)
 const grapic = resolve => require(['@/pages/goods/grapic'], resolve)
 const login = resolve => require(['@/pages/user/login'], resolve)
 const user = resolve => require(['@/pages/user/user'], resolve)
+const register = resolve => require(['@/pages/user/register'], resolve)
 const pay = resolve => require(['@/pages/pay/pay'], resolve)
 var router = new Router({
   routes: [
@@ -28,11 +29,14 @@ var router = new Router({
     {
       path: '/user',
       component: user,
-      meta: { requiresAuth: true },
       children: [
         {
           path: 'login',
           component: login
+        },
+        {
+          path: 'register',
+          component: register
         }
       ]
     },

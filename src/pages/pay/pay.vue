@@ -38,6 +38,7 @@
 			</div>
 			<p class="submit" @click="submit">确认支付</p>
 		</form>
+		<v-alert :msg="msg" v-if="flag" @close="close"></v-alert>
 		<guide></guide>
 	</div>
 </template>
@@ -46,6 +47,12 @@ import panel from '../../components/panel/panel'
 import { mapState } from 'vuex'
 import { getStore } from '../../util/util'
 export default{
+  data () {
+    return {
+      flag: false,
+      msg: ''
+    }
+  },
   components: {
     panel
   },
@@ -54,15 +61,20 @@ export default{
   ]),
   methods: {
     submit () {
+      let that = this
       this.axios.post(this.baseUrl + '/pay', {
         userId: getStore('user_id'),
         goodId: '123455',
         price: 100
       }).then(function (response) {
-        console.log(response)
+        that.flag = true
+        that.msg = response.data.retmsg
       }).catch(function (error) {
         console.log(error)
       })
+    },
+    close () {
+      this.flag = false
     }
   }
 }

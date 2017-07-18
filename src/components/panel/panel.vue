@@ -3,7 +3,7 @@
 		<div @click="toggle">
 			<slot name="title"></slot>
 		</div>
-  		<transition name="fade">
+  		<transition name="fade" @enter="enter" @afterEnter="afterEnter" @beforeLeave="beforeLeave">
         <div v-show="isShow" class="content-wrap" ref="content">
   			 <slot name="content"></slot>
         </div>
@@ -35,6 +35,21 @@ export default{
     this.init()
   },
   methods: {
+    enter (el) {
+      el.style.height = 'auto'
+      var endWidth = getComputedStyle(el).height
+      el.style.height = '0px'
+      el.offsetHeight // force repaint
+      el.style.height = endWidth
+    },
+    afterEnter (el) {
+      el.style.height = 'auto'
+    },
+    beforeLeave (el) {
+      el.style.height = getComputedStyle(el).height
+      el.offsetHeight // force repaint
+      el.style.height = '0px'
+    },
     toggle () {
       if (this.type === 'fold') {
         this.isShow = !this.isShow
@@ -45,8 +60,6 @@ export default{
         this.isShow = true
       } else {
         this.isShow = this.show
-        let box = this.$refs.content
-        box.style.height = '200px'
       }
     }
   }

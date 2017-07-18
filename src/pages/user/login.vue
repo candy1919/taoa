@@ -4,28 +4,28 @@
 			<p slot="left"><</p>
 			<p slot="title">登录</p>
 		</v-header>
-		<form>
+		<form class="form">
 			<div class="input-container">
-				<div class="input-wrap">
+				<div class="input-item">
 					<label>账号：</label>
-					<p>
+					<p class="input-wrap">
 						<input type="text" placeholder="请输入账号\手机号" required v-model="user_id">
 					</p>
 				</div>
-				<div class="input-wrap">
+				<div class="input-item">
 					<label>密码：</label>
-					<p>
+					<p class="input-wrap">
 						<input type="password" placeholder="请输入密码" required v-model="password">
 					</p>
-					<router-link to="/user/findPassword">忘记密码</router-link>
+					<router-link to="/user/findPassword" class="forget">忘记密码</router-link>
 				</div>
 			</div>
 			<div class="btns-group">
-				<p class="btn btn-login" @click="login">登录</p>
-				<router-link to="/user/register" class="btn btn-register">注册</router-link>
+				<p class="btn btn-submit" @click="login">登录</p>
+				<router-link to="/user/register" class="btn btn-default">注册</router-link>
 			</div>
 		</form>
-		<v-alert :msg="msg" :flag="flag" v-if="flag" @close="close"></v-alert>
+		<v-alert :msg="msg" v-if="flag" @close="close"></v-alert>
 	</div>
 </template>
 <script>
@@ -88,48 +88,52 @@ export default{
 			color:#333;
 			background-color: #eee;
 		}
-		.input-container{
-			margin:20px 0;
-			padding: 0 15px;
-			font-size: 18px;
-			color: #333;
-			background-color: #fff;
-			.input-wrap{
-				padding: 10px 0;
-				display: flex;
-				&:nth-of-type(1){
-					border-bottom: 1px solid #ddd;
-				}
-				p{
-					flex:1;
-					input{
-						width: 100%;
-					}
-				}
-				a{
-					margin-left: 5px;
-					color:#888;
-				}
-			}
+		.forget{
+			margin-left: 5px;
+			color:#888;
 		}
+		// .input-container{
+		// 	margin:20px 0;
+		// 	padding: 0 15px;
+		// 	font-size: 18px;
+		// 	color: #333;
+		// 	background-color: #fff;
+		// 	.input-wrap{
+		// 		padding: 10px 0;
+		// 		display: flex;
+		// 		&:nth-of-type(1){
+		// 			border-bottom: 1px solid #ddd;
+		// 		}
+		// 		p{
+		// 			flex:1;
+		// 			input{
+		// 				width: 100%;
+		// 			}
+		// 		}
+		// 		a{
+		// 			margin-left: 5px;
+		// 			color:#888;
+		// 		}
+		// 	}
+		// }
 		.btns-group{
 			padding:0 15px;
-			.btn{
-				display: block;
-				margin-bottom: 15px;
-				padding: 10px 0;
-				text-align: center;
-				border-radius: 3px;
-				border:1px solid #f66;
-				&.btn-login{
-					color:white;
-					background-color: #f66;
-				}
-				&.btn-register{
-					color: #f66;
-					//background-color: 
-				}
-			}
+			// .btn{
+			// 	display: block;
+			// 	margin-bottom: 15px;
+			// 	padding: 10px 0;
+			// 	text-align: center;
+			// 	border-radius: 3px;
+			// 	border:1px solid #f66;
+			// 	&.btn-login{
+			// 		color:white;
+			// 		background-color: #f66;
+			// 	}
+			// 	&.btn-register{
+			// 		color: #f66;
+			// 		//background-color: 
+			// 	}
+			// }
 		}
 	}
 </style>
