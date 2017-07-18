@@ -50,6 +50,10 @@ export default{
   methods: {
     getCode () {
       // 电话正则表达式
+      let rex =/^1[0-9]{10}$/
+      if (this.phone && rex.test(this.phone)) {
+        this.axios()
+      }
     }
   }
 }
