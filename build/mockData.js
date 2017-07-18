@@ -118,4 +118,18 @@ app.post('/pay', function (req, res) {
 	}
     res.send( JSON.stringify(data, null, 4) );
 });
+app.post('/getCode', function (req, res) {
+	let data = {
+		"retcode": 1,
+		"verifycode": "111111"
+	}
+    res.send( JSON.stringify(data, null, 4) );
+});
+app.post('/register', function (req, res) {
+	let data = {
+		"retcode": 1,
+		"retmsg": "注册成功"
+	}
+    res.send( JSON.stringify(data, null, 4) );
+});
 module.exports = app;
