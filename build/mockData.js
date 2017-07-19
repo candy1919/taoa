@@ -132,4 +132,15 @@ app.post('/register', function (req, res) {
 	}
     res.send( JSON.stringify(data, null, 4) );
 });
+app.post('/me', function (req, res) {
+	let data = {
+		"retcode": 1,
+		"retmsg": "查询成功",
+		"retdata": {
+			"src": 'http://dummyimage.com/640x400/339966/333&text=Banner1',
+			"score": 150
+		}
+	}
+    res.send( JSON.stringify(data, null, 4) );
+});
 module.exports = app;

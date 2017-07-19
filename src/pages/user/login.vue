@@ -65,7 +65,11 @@ export default{
               // 保存登录数据
             this.RECORD_USERINFO({user_id: this.user_id})
             // 跳转到原来想跳转的页面
-            this.$router.push({ path: this.$route.query.redirect })
+            if (this.$route.query.redirect) {
+              this.$router.push({ path: this.$route.query.redirect })
+            } else {
+              this.$router.push({path: '/me'})
+            }
           }
         }, response => {
         })

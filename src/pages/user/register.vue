@@ -22,13 +22,13 @@
 				<div class="input-item">
 					<label>设置密码：</label>
 					<div class="input-wrap">
-						<input placeholder="请输入6-15位字符，不能输入特殊字符" v-model="password">
+						<input placeholder="请输入6-15位字符，不能输入特殊字符" v-model="password" type="password">
 					</div>
 				</div>
 				<div class="input-item">
 					<label>确认密码：</label>
 					<div class="input-wrap">
-						<input placeholder="请输入确认密码" v-model="repassword">
+						<input placeholder="请输入确认密码" v-model="repassword" type="password">
 					</div>
 				</div>
 			</div>
@@ -50,7 +50,8 @@ export default{
       verifycode: '',
       code: '',
       password: '',
-      repassword: ''
+      repassword: '',
+      state: false
     }
   },
   methods: {
@@ -80,6 +81,7 @@ export default{
           password: that.password
         }).then(function (response) {
           that.flag = true
+          that.state = true
           that.msg = response.data.retmsg
         }).catch(function (error) {
           console.log(error)
@@ -104,6 +106,9 @@ export default{
     },
     close () {
       this.flag = false
+      if (this.state) {
+        this.$router.push({path: '/user/login'})
+      }
     }
   }
 }

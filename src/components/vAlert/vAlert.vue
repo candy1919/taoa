@@ -3,7 +3,11 @@
 		<div class="alert">
 			<span class="close" @click="close">x</span>
 			<p class="msg">{{msg}}</p>
+			<div class="btn-wrap">
+				<p class="btn" @click="close">确定</p>
+			</div>
 		</div>
+		
 	</div>
 </template>
 <script>
@@ -44,6 +48,19 @@ export default{
 				text-align: center;
 				font-size: 18px;
             }
+		}
+		.btn-wrap{
+			text-align: center;
+    		margin-top: 14px;
+    		font-size: 13px;
+		}
+		.btn {
+			display: inline-block;
+			padding: 5px;
+		    width: 5em;
+		    text-align: center;
+		    color: white;
+		    background-color: #f66;
 		}
 	}
 </style>

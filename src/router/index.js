@@ -10,6 +10,8 @@ const login = resolve => require(['@/pages/user/login'], resolve)
 const user = resolve => require(['@/pages/user/user'], resolve)
 const register = resolve => require(['@/pages/user/register'], resolve)
 const pay = resolve => require(['@/pages/pay/pay'], resolve)
+const me = resolve => require(['@/pages/me/me'], resolve)
+const recordList = resolve => require(['@/pages/me/recordList'], resolve)
 var router = new Router({
   routes: [
     {
@@ -44,6 +46,17 @@ var router = new Router({
       path: '/pay',
       component: pay,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/me',
+      component: me,
+      meta: { requiresAuth: true },
+      children: [
+        {
+          path: 'recordList',
+          component: recordList
+        }
+      ]
     }
   ]
 })
