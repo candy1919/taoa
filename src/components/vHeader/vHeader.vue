@@ -1,6 +1,6 @@
 <template>
 	<div class="header">
-		<div class="left">
+		<div class="left"  @click="back">
 			<slot name="left"></slot>
 		</div>
 		<div class="middle">
@@ -12,7 +12,13 @@
 	</div>
 </template>
 <script>
-	export default{}
+export default{
+  methods: {
+    back () {
+      this.$router.go(-1)
+    }
+  }
+}
 </script>
 <style lang="less" scroped>
 	.header{

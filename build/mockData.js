@@ -143,4 +143,125 @@ app.post('/me', function (req, res) {
 	}
     res.send( JSON.stringify(data, null, 4) );
 });
+app.post('/recordlist', function (req, res) {
+	let data = {
+		"retcode": 1,
+		"retmsg": "查询成功",
+		"retdata": [
+		   {
+		   	 "type": 0, // 准备揭晓
+		   	 "src": 'http://dummyimage.com/640x400/339966/333&text=Banner1',
+		   	 "title": '品胜苹果充电头充电器',
+		   	 "issue": '000001',
+		   	 "total": 200,
+		   	 "join": 20,
+		   	 "iswin": '',
+		   	 "luckynum":'123445',
+		   	 "time": Date.now()
+		   },
+		   {
+		   	 "type": 1, // 未揭晓
+		   	 "src": 'http://dummyimage.com/640x400/339966/333&text=Banner1',
+		   	 "title": '品胜苹果充电头充电器',
+		   	 "issue": '000002',
+		   	 "total": 200,
+		   	 "join": 20,
+		   	 "iswin": '',
+		   	 "luckynum":'',
+		   	 "time": Date.now()
+		   },
+		   {
+		   	 "type": 2, // 揭已晓
+		   	 "src": 'http://dummyimage.com/640x400/339966/333&text=Banner1',
+		   	 "title": '品胜苹果充电头充电器',
+		   	 "issue": '000003',
+		   	 "total": 200,
+		   	 "join": 20,
+		   	 "iswin": 1,
+		   	 "luckynum":'123445',
+		   	 "time": Date.now()
+		   },
+		   {
+		   	 "type": 1, // 未揭晓
+		   	 "src": 'http://dummyimage.com/640x400/339966/333&text=Banner1',
+		   	 "title": '悠悠苹果充电头充电器',
+		   	 "issue": '000004',
+		   	 "total": 500,
+		   	 "join": 10,
+		   	 "iswin": '',
+		   	 "luckynum":'',
+		   	 "time": Date.now()
+		   },
+		   {
+		   	 "type": 2, // 揭已晓
+		   	 "src": 'http://dummyimage.com/640x400/339966/333&text=Banner1',
+		   	 "title": '品胜苹果充电头充电器',
+		   	 "issue": '000005',
+		   	 "total": 200,
+		   	 "join": 20,
+		   	 "iswin": 0,
+		   	 "luckynum":'',
+		   	 "time": Date.now()
+		   },
+		]
+	}
+    res.send( JSON.stringify(data, null, 4) );
+});
+app.post('/winRecord', function (req, res) {
+	let data = {
+		"retcode": 1,
+		"retmsg": "查询成功",
+		"retdata": [
+		   {
+		   	 "type": 2, // 揭晓
+		   	 "src": 'http://dummyimage.com/640x400/339966/333&text=Banner1',
+		   	 "title": '品胜苹果充电头充电器',
+		   	 "issue": '000001',
+		   	 "total": 200,
+		   	 "join": 20,
+		   	 "iswin": 1,
+		   	 "luckynum":'123445',
+		   	 "time": Date.now(),
+		   	 "state":'等待派发'
+		   },
+		   {
+		   	 "type": 2, // 揭晓
+		   	 "src": 'http://dummyimage.com/640x400/339966/333&text=Banner1',
+		   	 "title": '品胜苹果充电头充电器',
+		   	 "issue": '000012',
+		   	 "total": 200,
+		   	 "join": 20,
+		   	 "iswin": 1,
+		   	 "luckynum":'123446',
+		   	 "time": Date.now(),
+		   	 "state":'已派发'
+		   },
+		   {
+		   	 "type": 2, // 揭晓
+		   	 "src": 'http://dummyimage.com/640x400/339966/333&text=Banner1',
+		   	 "title": '品胜苹果充电头充电器',
+		   	 "issue": '000023',
+		   	 "total": 200,
+		   	 "join": 20,
+		   	 "iswin": 1,
+		   	 "luckynum":'123465',
+		   	 "time": Date.now(),
+		   	 "state":'等待派发'
+		   },
+		   {
+		   	 "type": 2, // 揭晓
+		   	 "src": 'http://dummyimage.com/640x400/339966/333&text=Banner1',
+		   	 "title": '品胜苹果充电头充电器',
+		   	 "issue": '000067',
+		   	 "total": 200,
+		   	 "join": 20,
+		   	 "iswin": 1,
+		   	 "luckynum":'173445',
+		   	 "time": Date.now(),
+		   	 "state":'等待派发'
+		   },
+		]
+	}
+    res.send( JSON.stringify(data, null, 4) );
+});
 module.exports = app;

@@ -4,23 +4,24 @@
 			<p slot="left"><</p>
 			<p slot="title">夺宝记录</p>
 		</v-header>
-		<div class="item-wrap">
+		<div v-for="item in itemdatas">
+		<div class="item-wrap" v-if="item.type==0">
 			<split></split>
 			<div class="item">
 				<div class="avatar-wrap">
-					<img>
+					<img :src="item.src">
 				</div>
 				<div class="content">
-					<p class="title">标题</p>
+					<p class="title">{{item.title}}</p>
 					<div class="text">
 						<p>
-							<span>期&nbsp;&nbsp;&nbsp;&nbsp;号:&nbsp;&nbsp;</span><span>111111</span>
+							<span>期&nbsp;&nbsp;&nbsp;&nbsp;号:&nbsp;&nbsp;</span><span>{{item.issue}}</span>
 						</p>
 					<span class="btn">追加</span>
 					</div>
-					<div class="text">总需1000次</div>
+					<div class="text">总需{{item.total}}次</div>
 					<div class="text">
-						<p>参与人数：10人</p>
+						<p>参与人数：{{item.join}}人</p>
 						<router-link class="link" to="/me">查看号码</router-link>
 					</div>
 					<div class="text">
@@ -29,55 +30,61 @@
 				</div>
 			</div>
 		</div>
-		<div class="item-wrap">
+		<div class="item-wrap" v-if="item.type==1">
 			<split></split>
 			<div class="item">
 				<div class="avatar-wrap">
-					<img>
+					<img :src="item.src">
 				</div>
 				<div class="content">
-					<p class="title">标题</p>
+					<p class="title">{{item.title}}</p>
 					<div class="text">
 						<p>
-							<span>期&nbsp;&nbsp;&nbsp;&nbsp;号:&nbsp;&nbsp;</span><span>111111</span>
+							<span>期&nbsp;&nbsp;&nbsp;&nbsp;号:&nbsp;&nbsp;</span><span>{{item.issue}}</span>
 						</p>
 					<span class="btn">追加</span>
 					</div>
 					<div class="text progress-wrap">
-						<vprogress :joinedmember="20" :totalmember="40"></vprogress>
+						<vprogress :joinedmember="item.join" :totalmember="item.total"></vprogress>
 					</div>
 					<div class="text">
-						<p>参与人数：10人</p>
+						<p>参与人数：{{item.join}}人</p>
 						<router-link class="link" to="/me">查看号码</router-link>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="item-wrap">
+		<div class="item-wrap" v-if="item.type==2">
 			<split></split>
 			<div class="item">
 				<div class="avatar-wrap">
-					<img>
+					<img :src="item.src">
 				</div>
 				<div class="content">
-					<p class="title">标题</p>
+					<p class="title">{{item.title}}</p>
 					<div class="text">
 						<p>
-							<span>期&nbsp;&nbsp;&nbsp;&nbsp;号:&nbsp;&nbsp;</span><span>111111</span>
+							<span>期&nbsp;&nbsp;&nbsp;&nbsp;号:&nbsp;&nbsp;</span><span>{{item.issue}}</span>
 						</p>
 					</div>
 					<div class="text">
 						<p>参与人数：10人</p>
 						<router-link class="link" to="/me">查看号码</router-link>
 					</div>
-					<div class="info">
+					<div class="info" v-if="item.iswin">
 						<p>获奖者：哎哎哎</p>
 						<p>参与人数：20</p>
 						<p>幸运号码：123445</p>
 						<p>揭晓时间：1111</p>
 					</div>
+					<div class="info" v-else>
+						<p>未中奖</p>
+						<p>参与人数：20</p>
+						<p>揭晓时间：1111</p>
+					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </template>
@@ -86,6 +93,23 @@ import vprogress from '@/components/progress/progress'
 export default {
   components: {
     vprogress
+  },
+  data () {
+    return {
+      itemdatas: [],
+      name: ''
+    }
+  },
+  created () {
+    let that = this
+    this.name = this.$store.state.userInfo
+    this.axios.post(this.baseUrl + '/recordlist', {
+      name: that.name
+    }).then(function (response) {
+      that.itemdatas = response.data.retdata
+    }).catch(function (error) {
+      console.log(error)
+    })
   }
 }
 </script>
@@ -97,7 +121,7 @@ export default {
 		width: 100%;
 		height: 100%;
 		z-index: 5;
-		// background: grey;
+		background: #ebebeb;
 		.item{
 			display: flex;
 			align-items: center;

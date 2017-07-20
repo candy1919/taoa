@@ -28,6 +28,7 @@ export default{
 	width: 100%;
 	height: 6px;
 	overflow: hidden;
+  font-size: 0;
 	background-color: #ddd;
 	border-radius: 3px;
 	span{

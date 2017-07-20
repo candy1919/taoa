@@ -12,6 +12,8 @@ const register = resolve => require(['@/pages/user/register'], resolve)
 const pay = resolve => require(['@/pages/pay/pay'], resolve)
 const me = resolve => require(['@/pages/me/me'], resolve)
 const recordList = resolve => require(['@/pages/me/recordList'], resolve)
+const winRecord = resolve => require(['@/pages/me/winRecord'], resolve)
+const winConfirm = resolve => require(['@/pages/me/winConfirm'], resolve)
 var router = new Router({
   routes: [
     {
@@ -55,6 +57,14 @@ var router = new Router({
         {
           path: 'recordList',
           component: recordList
+        },
+        {
+          path: 'winRecord',
+          component: winRecord
+        },
+        {
+          path: 'winConfirm',
+          component: winConfirm
         }
       ]
     }

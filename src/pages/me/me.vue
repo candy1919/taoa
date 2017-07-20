@@ -24,7 +24,7 @@
 				</div>
 				<div class="content-item">
 					<p class="icon-champion text">中奖记录</p>
-					<router-link class="icon-arrow-go go" to="/me"></router-link>
+					<router-link class="icon-arrow-go go" to="/me/winRecord"></router-link>
 				</div>
 				<div class="content-item">
 					<p class="icon-redpack text">红包</p>
