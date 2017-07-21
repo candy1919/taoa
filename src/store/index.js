@@ -9,7 +9,8 @@ Vue.use(Vuex)
 const state = {
   userInfo: null, // 用户信息
   login: false, // 是否登录
-  score: null // 积分
+  score: null, // 积分
+  userDetail: {}
 }
 
 export default new Vuex.Store({

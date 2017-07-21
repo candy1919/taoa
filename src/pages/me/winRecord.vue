@@ -4,9 +4,9 @@
 			<p slot="left"><</p>
 			<p slot="title">中奖记录</p>
 		</v-header>
-		<router-link class="item-wrap" v-for="item in itemdatas" :to="{path:'/me/winConfirm', params:{winInf:item}}" :key="item.issue">
+		<div class="item-wrap" v-for="item in itemdatas"   :key="item.issue">
 			<split></split>
-			<div class="item">
+			<div class="item" @click="goDetail(item)">
 				<div class="avatar-wrap">
 					<img :src="item.src">
 				</div>
@@ -26,7 +26,7 @@
 				</div>
 			</div>
 			<p class="state">{{item.state}}</p>
-		</router-link>
+		</div>
 	</div>
 </template>
 <script>
@@ -52,6 +52,15 @@ export default {
     formate (time) {
       let data = new Date(time)
       return formateTime(data, 'yyyy-MM-dd hh:mm:ss')
+    }
+  },
+  methods: {
+    goDetail (val) {
+      if (typeof val === 'object') {
+        val = JSON.stringify(val)
+      }
+      sessionStorage.setItem('winData', val)
+      this.$router.push('/me/winConfirm')
     }
   }
 }

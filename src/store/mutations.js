@@ -1,4 +1,4 @@
-import { RECORD_USERINFO, OUT_LOGIN, GET_USERINFO, GET_SCORE } from './mutations-types'
+import { RECORD_USERINFO, OUT_LOGIN, GET_USERINFO, GET_SCORE, GET_USERDETAIL } from './mutations-types'
 import {setStore, getStore, delStore} from '../util/util'
 
 export default{
@@ -16,5 +16,8 @@ export default{
   },
   [GET_SCORE] (state, score) {
     state.score = score
+  },
+  [GET_USERDETAIL] (state, info) {
+    state.userDetail = info
   }
 }
