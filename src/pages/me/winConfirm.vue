@@ -48,10 +48,10 @@
 		<div class="container">
 			<p class="head">地址信息</p>
 			<p class="info">
-				<span class="name">姓名</span>
-				<span class="phone">123432434</span>
+				<span class="name">{{userInfo.name}}</span>
+				<span class="phone">{{userInfo.phone}}</span>
 			</p>
-			<p class="info-text">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+			<p class="info-text">{{userInfo.address}}</p>
 		</div>
 		<split></split>
 		<div class="container">
@@ -79,6 +79,7 @@
 	</div>
 </template>
 <script>
+import {mapState} from 'vuex'
 import {formateTime} from '@/util/util'
 export default{
   data () {
@@ -86,6 +87,10 @@ export default{
       item: JSON.parse(sessionStorage.getItem('winData'))
     }
   },
+  computed: mapState([
+  // 映射 this.count 为 store.state.count
+    'userInfo'
+  ]),
   filters: {
     formate (time) {
       let data = new Date(time)

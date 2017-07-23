@@ -12,8 +12,15 @@
 	</div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default{
+  created () {
+    this.getUserInfo()
+  },
   methods: {
+    ...mapActions([
+      'getUserInfo'
+    ]),
     back () {
       this.$router.go(-1)
     }

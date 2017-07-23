@@ -264,4 +264,18 @@ app.post('/winRecord', function (req, res) {
 	}
     res.send( JSON.stringify(data, null, 4) );
 });
+app.post('/getUserInfo', function (req, res) {
+	let data = {
+		"retcode": 1,
+		"retmsg": "获取成功",
+		"data": {
+			user_id: 'admin',
+			phone: '12345678999',
+			address: '深圳市南山区南山智园B栋12楼',
+			name: '苏英',
+			avatar: 'http://scimg.jb51.net/allimg/150819/14-150QZ9194K27.jpg'
+		}
+	}
+    res.send( JSON.stringify(data, null, 4) );
+});
 module.exports = app;

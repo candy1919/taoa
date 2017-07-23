@@ -7,10 +7,9 @@ import getters from './getters'
 Vue.use(Vuex)
 
 const state = {
-  userInfo: null, // 用户信息
+  userInfo: {}, // 用户信息
   login: false, // 是否登录
-  score: null, // 积分
-  userDetail: {}
+  score: null // 积分
 }
 
 export default new Vuex.Store({

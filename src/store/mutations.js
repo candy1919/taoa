@@ -1,4 +1,4 @@
-import { RECORD_USERINFO, OUT_LOGIN, GET_USERINFO, GET_SCORE, GET_USERDETAIL } from './mutations-types'
+import { RECORD_USERINFO, OUT_LOGIN, GET_USERINFO, GET_SCORE, GET_USERID } from './mutations-types'
 import {setStore, getStore, delStore} from '../util/util'
 
 export default{
@@ -11,13 +11,13 @@ export default{
     state.login = false
     delStore('user_id')
   },
-  [GET_USERINFO] (state) {
-    state.userInfo = getStore('user_id')
+  [GET_USERID] (state) {
+    state.userInfo.user_id = getStore('user_id')
   },
   [GET_SCORE] (state, score) {
     state.score = score
   },
-  [GET_USERDETAIL] (state, info) {
-    state.userDetail = info
+  [GET_USERINFO] (state, info) {
+    state.userInfo = info
   }
 }

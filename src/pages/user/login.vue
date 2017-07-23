@@ -29,7 +29,7 @@
 	</div>
 </template>
 <script>
-import {mapMutations} from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 export default{
   data () {
     return {
@@ -42,6 +42,9 @@ export default{
   methods: {
     ...mapMutations([
       'RECORD_USERINFO'
+    ]),
+    ...mapActions([
+      'getUserInfo'
     ]),
     login () {
       if (this.user_id && this.password) {
@@ -64,6 +67,7 @@ export default{
           } else {
               // 保存登录数据
             this.RECORD_USERINFO({user_id: this.user_id})
+            this.getUserInfo()
             // 跳转到原来想跳转的页面
             if (this.$route.query.redirect) {
               this.$router.push({ path: this.$route.query.redirect })

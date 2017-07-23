@@ -10,6 +10,7 @@ const login = resolve => require(['@/pages/user/login'], resolve)
 const user = resolve => require(['@/pages/user/user'], resolve)
 const register = resolve => require(['@/pages/user/register'], resolve)
 const pay = resolve => require(['@/pages/pay/pay'], resolve)
+const add = resolve => require(['@/pages/pay/add'], resolve)
 const me = resolve => require(['@/pages/me/me'], resolve)
 const recordList = resolve => require(['@/pages/me/recordList'], resolve)
 const winRecord = resolve => require(['@/pages/me/winRecord'], resolve)
@@ -47,6 +48,11 @@ var router = new Router({
     {
       path: '/pay',
       component: pay,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/add',
+      component: add,
       meta: { requiresAuth: true }
     },
     {

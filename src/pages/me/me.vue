@@ -8,9 +8,9 @@
 				</div>
 				<div class="user">
 					<div class="avatar-wrap">
-						<img class="avatar" :src="avatar">
+						<img class="avatar" :src="userInfo.avatar">
 					</div>
-					<p class="name">{{name}}</p>
+					<p class="name">{{userInfo.user_id}}</p>
 				</div>
 				<div class="balance-wrap">
 					<p class="balance">余额：<span class="num">{{score}}</span>积分</p>
@@ -45,29 +45,35 @@
 	</div>
 </template>
 <script>
-import {mapMutations} from 'vuex'
+import {mapMutations, mapActions, mapState} from 'vuex'
 export default {
   data () {
     return {
-      score: '',
-      name: '',
-      avatar: ''
+      score: ''
     }
   },
+  computed: mapState([
+  // 映射 this.count 为 store.state.count
+    'userInfo'
+  ]),
   methods: {
     ...mapMutations([
       'GET_SCORE'
+    ]),
+    ...mapActions([
+      'getUserInfo'
     ])
   },
   created () {
     let that = this
-    this.name = this.$store.state.userInfo
+    this.name = this.$store.state.userInfo.user_id
     this.axios.post(this.baseUrl + '/me', {
       name: that.name
     }).then(function (response) {
       that.avatar = response.data.retdata.src
       that.score = response.data.retdata.score
       that.GET_SCORE(that.score)
+      that.getUserInfo()
     }).catch(function (error) {
       console.log(error)
     })
