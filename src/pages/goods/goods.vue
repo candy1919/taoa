@@ -96,7 +96,7 @@
 				</div>
 			</div>
 		</div>
-		<cart></cart>
+		<cart :goodsId="goodsInf.id"></cart>
 		</div>
 		<transition name="router-slid" v-on:before-enter="beforeEnter" v-on:leave="leave">
             <router-view></router-view>

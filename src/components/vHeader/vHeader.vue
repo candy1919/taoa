@@ -34,6 +34,7 @@ export default{
 		height: 45px;
 		line-height: 45px;
 		text-align: center;
+		align-items:center;
 		color: #fff;
 		background-color: #f66;
 		.left{

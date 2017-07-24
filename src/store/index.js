@@ -9,9 +9,9 @@ Vue.use(Vuex)
 const state = {
   userInfo: {}, // 用户信息
   login: false, // 是否登录
-  score: null // 积分
+  score: null, // 积分
+  cart: [] // 购物车
 }
-
 export default new Vuex.Store({
   state,
   getters,

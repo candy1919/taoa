@@ -5,17 +5,48 @@
 				<router-link :to="{path:'/pay'}">立即夺宝</router-link>
 			</div>
 			<div class="add">
-				<router-link :to="{path:'/add'}">加入清单</router-link>
+				<p @click="setCart(goodsId)">加入清单</p>
 			</div>
 			<div class="cart-wrap">
-				<router-link :to="{path:'/pay'}"><i class="icon-cart"></i></router-link>
+				<router-link :to="{path:'/pay'}">
+				  <i class="icon-cart"></i>
+				  <span class="num">{{sum}}</span>
+				</router-link>
 			</div>
 		<!-- </div> -->
 		
 	</div>
 </template>
 <script>
-	export default{}
+import {mapActions, mapState, mapMutations} from 'vuex'
+export default{
+  props: {
+    goodsId: ''
+  },
+  computed: {
+    ...mapState([
+      'cart'
+    ]),
+    sum: function () {
+      let num = 0
+      this.cart.forEach(item => {
+        num += item.num
+      })
+      return num
+    }
+  },
+  created () {
+    this.GET_CART()
+  },
+  methods: {
+    ...mapActions([
+      'setCart'
+    ]),
+    ...mapMutations([
+      'GET_CART'
+    ])
+  }
+}
 </script>
 <style lang="less" scoped>
 	.cart{
@@ -48,6 +79,19 @@
 			i{
 				font-size: 30px;
 				vertical-align: middle;
+			}
+			a{
+				position: relative;
+				.num{
+					position: absolute;
+					left: 0;
+					top:-5px;
+					padding: 0 5px;
+					color: white;
+					font-size: 12px;
+					background: #f66;
+					border-radius: 50%;
+				}
 			}
 		} 
 	}

@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { baseUrl } from '../config'
-export const getUser = () => {
+function fetch (url, params) {
   return new Promise((resolve, reject) => {
-    axios.post(baseUrl + '/getUserInfo').then(function (response) {
+    axios.post(baseUrl + url, params).then(function (response) {
       resolve(response.data)
     }).catch(function (error) {
       console.log(error)
@@ -10,3 +10,10 @@ export const getUser = () => {
     })
   })
 }
+export const getUser = () => {
+  return fetch('/getUserInfo')
+}
+export const getGoods = (goodsId) => {
+  return fetch('/getGoods', {goodsId})
+}
+

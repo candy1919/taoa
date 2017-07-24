@@ -278,4 +278,21 @@ app.post('/getUserInfo', function (req, res) {
 	}
     res.send( JSON.stringify(data, null, 4) );
 });
+app.post('/getGoods', function (req, res) {
+	let data = Mock.mock({
+		"retcode": 1,
+		"retmsg": "获取成功",
+		"data": {
+			'goodsId|1': ['000001','000002','000003','000004','000005','000006','000007','000008','000009','000010'],
+			'shopId': '00001',
+			'address': '深圳市南山区南山智园B栋12楼',
+			'name': '品胜苹果充电头充电器',
+			'avatar': 'http://scimg.jb51.net/allimg/150819/14-150QZ9194K27.jpg',
+		    'price': 100,
+		    'total': 10000,
+		    'remain': 560
+		}
+	})
+    res.send( JSON.stringify(data, null, 4) );
+});
 module.exports = app;
